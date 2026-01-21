@@ -1,0 +1,20 @@
+<div class="app">
+  <header>Liyu</header>
+
+  <div class="chat-area">
+    <div class="message lipwoo">
+      <img class="profile" src="profile.jpg" />
+      <div class="bubble">러부단~ 뭐해용?</div>
+    </div>
+  </div>
+
+  <div class="choices">
+    <button>A. 나는 립우 생각~</button>
+    <button>B. 립우 생각 중~ 립우는 뭐해?</button>
+    <button>C. 립우랑 연락 중!</button>
+  </div>
+
+  <div class="input">
+    메시지 보내기…
+  </div>
+</div>
