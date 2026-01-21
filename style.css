@@ -75,3 +75,13 @@ html, body {
   flex-direction: column;
   height: 100vh;
 }
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.input {
+  padding: 12px;
+  border-top: 1px solid #ddd;
+}
