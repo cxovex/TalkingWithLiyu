@@ -19,12 +19,51 @@
 
     <div class="choices">
       <button>나는 립우 생각~</button>
-      <button>립우는 뭐해?</button>
+      <button>립우 생각! 립우는 뭐해?</button>
       <button>립우랑 연락 중!</button>
     </div>
 
     <div class="input">메시지 보내기...</div>
   </div>
 </body>
+  <script>
+  const chat = document.getElementById("chat");
+  const choices = document.getElementById("choices");
+
+  function selectChoice(text) {
+    // 버튼 숨기기
+    choices.innerHTML = "";
+
+    // 1️⃣ 내가 보낸 말
+    const myMsg = document.createElement("div");
+    myMsg.className = "message me";
+    myMsg.innerText = text;
+    chat.appendChild(myMsg);
+    chat.scrollTop = chat.scrollHeight;
+
+    // 2️⃣ 립우 답장 (선택지별 분기)
+    setTimeout(() => {
+      const reply = document.createElement("div");
+      reply.className = "message riwoo";
+      reply.innerText = getRiwooReply(text);
+      chat.appendChild(reply);
+      chat.scrollTop = chat.scrollHeight;
+    }, 700);
+  }
+
+  function getRiwooReply(text) {
+    if (text === "나는 립우 생각~") {
+      return "오 ㅎㅎ 감동인데요? 러부단! 나 보고 싶어요?";
+    }
+    if (text === "립우 생각! 립우는 뭐해?") {
+      return "나는 러부단 생각하고 있죠~ 러부단 나 많이 보고 싶어요?";
+    }
+    if (text === "립우랑 연락 중!") {
+      return "나도 러부단이랑 연락 중인데! 러부단 나 보고싶죠? ㅎㅎ";
+    }
+    return "";
+  }
+</script>
+
 </html>
 
