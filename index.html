@@ -31,6 +31,7 @@ const chat = document.getElementById("chat");
 const choices = document.getElementById("choices");
 
 let step = 0;
+let lovePoint = 0;
 
 /* 내용 수정 */
 const scenario = [
@@ -83,6 +84,10 @@ function renderChoices() {
 }
 
 function selectChoice(text) {
+  if (text.includes("맨날")) {
+  lovePoint++;
+}
+  
   choices.innerHTML = "";
 
   /* 내가 보낸 말 */
@@ -106,14 +111,34 @@ function selectChoice(text) {
     step++;
 
     if (step < scenario.length) {
-      setTimeout(renderChoices, 500);
-    } else {
-      setTimeout(showEnding, 800);
-    }
+  setTimeout(renderChoices, 500);
+} else {
+  if (lovePoint >= 2) {
+    setTimeout(showSecretEnding, 800);
+  } else {
+    setTimeout(showEnding, 800);
+  }
+}
   }, 700);
 }
 
 function showEnding() {
+  function showSecretEnding() {
+  const secret = document.createElement("div");
+  secret.className = "message riwoo";
+  secret.innerHTML = `
+    <img class="profile" src="./profile.jpg">
+    <div class="bubble">
+      사실요…<br>
+      러부단이 이렇게 계속 마음 표현해주는 거<br>
+      저 진짜 다 알고 있었어요.<br><br>
+      저도 똑같이 러부단 생각 많이 해요.<br>
+      우리 이건… 운명이죠? 💙
+    </div>
+  `;
+  chat.appendChild(secret);
+  chat.scrollTop = chat.scrollHeight;
+}
   const end = document.createElement("div");
   end.className = "message riwoo";
   end.innerHTML = `
