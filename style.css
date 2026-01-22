@@ -14,15 +14,11 @@ body {
 .app {
   width: 100%;
   max-width: 420px;
-
-  /* 사파리 대응 핵심 */
   height: 100svh;
   height: 100dvh;
-
   display: flex;
   flex-direction: column;
 }
-
 
 header {
   text-align: center;
@@ -36,12 +32,15 @@ header {
   flex: 1;
   padding: 12px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  animation: pop 0.25s ease-out;
 }
 
 .profile {
@@ -56,6 +55,16 @@ header {
   padding: 10px 14px;
   border-radius: 14px;
   max-width: 70%;
+  font-size: 14px;
+}
+
+.me {
+  align-self: flex-end;
+}
+
+.me-bubble {
+  background: #4fc3f7;
+  color: white;
 }
 
 .choices {
@@ -78,48 +87,6 @@ header {
   background: #fff;
   border-top: 1px solid #ddd;
   color: #aaa;
-}
-
-.chat {
-  flex: 1;
-  overflow-y: auto;
-  padding: 12px;
-}
-
-.input-area {
-  padding: 10px;
-  background: white;
-  border-top: 1px solid #ddd;
-}
-
-.chat {
-  flex: 1;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.message {
-  max-width: 70%;
-  padding: 10px 14px;
-  border-radius: 16px;
-  margin-bottom: 8px;
-  font-size: 15px;
-  animation: pop 0.25s ease-out;
-}
-
-/* 립우 말풍선 (왼쪽) */
-.riwoo {
-  background: white;
-  align-self: flex-start;
-}
-
-/* 내가 보낸 말풍선 (오른쪽) */
-.me {
-  background: #4fc3f7;
-  color: white;
-  align-self: flex-end;
 }
 
 @keyframes pop {
