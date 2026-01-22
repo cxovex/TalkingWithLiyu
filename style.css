@@ -67,3 +67,26 @@ header {
   border-top: 1px solid #ddd;
   color: #aaa;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: #cdefff;
+}
+
+/* 앱 전체 */
+.app {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  background: #cdefff;
+  display: flex;
+  flex-direction: column;
+}
