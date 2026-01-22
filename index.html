@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Liyu</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -10,60 +10,64 @@
   <div class="app">
     <header>Liyu</header>
 
-    <div class="chat-area">
-      <div class="message">
+    <!-- 🔥 id 추가 -->
+    <div class="chat-area" id="chat">
+      <div class="message riwoo">
         <img class="profile" src="./profile.jpg">
         <div class="bubble">러부단~ 뭐해용?</div>
       </div>
     </div>
 
-    <div class="choices">
-      <button>나는 립우 생각~</button>
-      <button>립우 생각! 립우는 뭐해?</button>
-      <button>립우랑 연락 중!</button>
+    <!-- 🔥 id + onclick 추가 -->
+    <div class="choices" id="choices">
+      <button onclick="selectChoice('나는 립우 생각~')">나는 립우 생각~</button>
+      <button onclick="selectChoice('립우 생각! 립우는 뭐해?')">립우 생각! 립우는 뭐해?</button>
+      <button onclick="selectChoice('립우랑 연락 중!')">립우랑 연락 중!</button>
     </div>
 
     <div class="input">메시지 보내기...</div>
   </div>
-</body>
+
+  <!-- ✅ JS는 body 맨 아래 -->
   <script>
-  const chat = document.getElementById("chat");
-  const choices = document.getElementById("choices");
+    const chat = document.getElementById("chat");
+    const choices = document.getElementById("choices");
 
-  function selectChoice(text) {
-    // 버튼 숨기기
-    choices.innerHTML = "";
+    function selectChoice(text) {
+      choices.innerHTML = "";
 
-    // 1️⃣ 내가 보낸 말
-    const myMsg = document.createElement("div");
-    myMsg.className = "message me";
-    myMsg.innerText = text;
-    chat.appendChild(myMsg);
-    chat.scrollTop = chat.scrollHeight;
-
-    // 2️⃣ 립우 답장 (선택지별 분기)
-    setTimeout(() => {
-      const reply = document.createElement("div");
-      reply.className = "message riwoo";
-      reply.innerText = getRiwooReply(text);
-      chat.appendChild(reply);
+      // 내가 보낸 말 (오른쪽)
+      const myMsg = document.createElement("div");
+      myMsg.className = "message me";
+      myMsg.innerHTML = `<div class="bubble me-bubble">${text}</div>`;
+      chat.appendChild(myMsg);
       chat.scrollTop = chat.scrollHeight;
-    }, 700);
-  }
 
-  function getRiwooReply(text) {
-    if (text === "나는 립우 생각~") {
-      return "오 ㅎㅎ 감동인데요? 러부단! 나 보고 싶어요?";
+      // 립우 답장
+      setTimeout(() => {
+        const reply = document.createElement("div");
+        reply.className = "message riwoo";
+        reply.innerHTML = `
+          <img class="profile" src="./profile.jpg">
+          <div class="bubble">${getRiwooReply(text)}</div>
+        `;
+        chat.appendChild(reply);
+        chat.scrollTop = chat.scrollHeight;
+      }, 700);
     }
-    if (text === "립우 생각! 립우는 뭐해?") {
-      return "나는 러부단 생각하고 있죠~ 러부단 나 많이 보고 싶어요?";
-    }
-    if (text === "립우랑 연락 중!") {
-      return "나도 러부단이랑 연락 중인데! 러부단 나 보고싶죠? ㅎㅎ";
-    }
-    return "";
-  }
-</script>
 
+    function getRiwooReply(text) {
+      if (text === "나는 립우 생각~") {
+        return "오 ㅎㅎ 감동인데요? 러부단! 나 보고 싶어요?";
+      }
+      if (text === "립우 생각! 립우는 뭐해?") {
+        return "나는 러부단 생각하고 있죠~ 러부단 나 많이 보고 싶어요?";
+      }
+      if (text === "립우랑 연락 중!") {
+        return "나도 러부단이랑 연락 중인데! 러부단 나 보고싶죠? ㅎㅎ";
+      }
+      return "";
+    }
+  </script>
+</body>
 </html>
-
