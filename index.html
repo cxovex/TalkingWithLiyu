@@ -20,54 +20,11 @@
     <div class="choices">
       <button>나는 립우 생각~</button>
       <button>립우는 뭐해?</button>
-      <button>지금 연락 중!</button>
+      <button>립우랑 연락 중!</button>
     </div>
 
     <div class="input">메시지 보내기...</div>
   </div>
 </body>
-  <script>
-  const chat = document.getElementById("chat");
-  const choices = document.getElementById("choices");
-
-  function selectChoice(text) {
-    // 버튼 비활성화
-    choices.innerHTML = "";
-
-    // 내가 보낸 말
-    const myMsg = document.createElement("div");
-    myMsg.className = "message me";
-    myMsg.innerText = text;
-    chat.appendChild(myMsg);
-    chat.scrollTop = chat.scrollHeight;
-
-    // 립우 답장 (조금 늦게)
-    setTimeout(() => {
-      const reply = document.createElement("div");
-      reply.className = "message riwoo";
-      reply.innerText = getReply(text);
-      chat.appendChild(reply);
-      chat.scrollTop = chat.scrollHeight;
-
-      // 다음 선택지
-      setTimeout(showNextChoices, 400);
-    }, 800);
-  }
-
-  function getReply(text) {
-    if (text === "공부 중이야") return "와 멋지다… 집중 잘해용 📖";
-    if (text === "립우 생각중") return "에에 그런 말 하지 말구~ 😳";
-    return "궁금한데요? 알려줘요~";
-  }
-
-  function showNextChoices() {
-    choices.innerHTML = `
-      <button onclick="selectChoice('사진 보내줘')">사진 보내줘</button>
-      <button onclick="selectChoice('보고 싶어')">보고 싶어</button>
-      <button onclick="selectChoice('오늘 뭐 했어?')">오늘 뭐 했어?</button>
-    `;
-  }
-</script>
-
 </html>
 
