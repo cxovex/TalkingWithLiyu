@@ -10,7 +10,6 @@
   <div class="app">
     <header>Liyu</header>
 
-    <!-- 🔥 id 추가 -->
     <div class="chat-area" id="chat">
       <div class="message riwoo">
         <img class="profile" src="./profile.jpg">
@@ -18,7 +17,6 @@
       </div>
     </div>
 
-    <!-- 🔥 id + onclick 추가 -->
     <div class="choices" id="choices">
       <button onclick="selectChoice('나는 립우 생각~')">나는 립우 생각~</button>
       <button onclick="selectChoice('립우 생각! 립우는 뭐해?')">립우 생각! 립우는 뭐해?</button>
@@ -83,17 +81,38 @@
     });
   }
 
-  function selectChoice(text) {
-    choices.innerHTML = "";
+function selectChoice(text) {
+  choices.innerHTML = "";
 
-    // 내가 보낸 말
+  const myMsg = document.createElement("div");
+  myMsg.className = "message me";
+  myMsg.innerText = text;
+  chat.appendChild(myMsg);
+  chat.scrollTop = chat.scrollHeight;
+
+  setTimeout(() => {
+    const reply = document.createElement("div");
+    reply.className = "message riwoo";
+    reply.innerText = scenario[step].replies[text];
+    chat.appendChild(reply);
+    chat.scrollTop = chat.scrollHeight;
+
+    step++;
+
+    if (step < scenario.length) {
+      setTimeout(() => {
+        renderChoices();
+      }, 500);
+    }
+  }, 700);
+}
+
     const myMsg = document.createElement("div");
     myMsg.className = "message me";
     myMsg.innerHTML = `<div class="bubble me-bubble">${text}</div>`;
     chat.appendChild(myMsg);
     chat.scrollTop = chat.scrollHeight;
 
-    // 립우 답장
     setTimeout(() => {
       const reply = document.createElement("div");
       reply.className = "message riwoo";
@@ -106,7 +125,6 @@
 
       step++;
 
-      // 🔚 엔딩
       if (step >= scenario.length) {
         setTimeout(showEnding, 900);
       } else {
