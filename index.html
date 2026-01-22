@@ -113,32 +113,6 @@ function selectChoice(text) {
   }, 700);
 }
 
-    const myMsg = document.createElement("div");
-    myMsg.className = "message me";
-    myMsg.innerHTML = `<div class="bubble me-bubble">${text}</div>`;
-    chat.appendChild(myMsg);
-    chat.scrollTop = chat.scrollHeight;
-
-    setTimeout(() => {
-      const reply = document.createElement("div");
-      reply.className = "message riwoo";
-      reply.innerHTML = `
-        <img class="profile" src="./profile.jpg">
-        <div class="bubble">${scenario[step].replies[text]}</div>
-      `;
-      chat.appendChild(reply);
-      chat.scrollTop = chat.scrollHeight;
-
-      step++;
-
-      if (step >= scenario.length) {
-        setTimeout(showEnding, 900);
-      } else {
-        setTimeout(renderChoices, 700);
-      }
-    }, 700);
-  }
-
   function showEnding() {
     const endMsg = document.createElement("div");
     endMsg.className = "message riwoo";
